@@ -24,9 +24,17 @@ jobs:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASSWORD: ${{ secrets.TOKEN_PASSWORD }}
       run: |
-        echo "Init Login"
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-        echo "End login"
-    # - name: Build the Docker image
+
+
+    - name: Build Docker Image
+      run: |
+        docker build -t fredost/grapql:0.0.2 .
+
+    - name: Push Docker Image
+      run: |
+        docker pudh -t fredost/grapql:0.0.2 .
+      
+            # - name: Build the Docker image
     #   run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
     
